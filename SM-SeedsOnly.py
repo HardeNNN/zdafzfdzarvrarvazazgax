@@ -19,4 +19,4 @@ tds = soup.select('#searchResult td.vertTh ~ td')
 links = [name.select_one('a[href^=magnet]')['href'] for name, seeders, leechers in zip(tds[0::3], tds[1::3], tds[2::3]) if seeders.text.strip() != '0']
 with open('magnetswseeds.txt', 'wt') as out:
     pprint(links, width=120, stream=out)
-print('\n', list[0])
+print(*links, sep="\n", file=open("magnetsnolist.txt", "w"))
