@@ -1,6 +1,9 @@
+# This is a script that extracts magnet links with more than 0 seeds from a
+# specified link.
 from bs4 import BeautifulSoup
 import urllib.request
 import re
+
 
 class AppURLopener(urllib.request.FancyURLopener):
     version = "Mozilla/5.0"
@@ -11,4 +14,4 @@ opener = AppURLopener()
 html_page = opener.open(url)
 soup = BeautifulSoup(html_page, "lxml")
 for link in soup.findAll('a', attrs={'href': re.compile("^magnet")}):
-     print ('\n',link.get('href'),'\n',file=open("magnets.txt", "a"))
+    print('\n', link.get('href'), '\n', file=open("magnets.txt", "w"))
